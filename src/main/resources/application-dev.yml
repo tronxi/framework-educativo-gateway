@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: "gateway"
+  cloud:
+    gateway:
+      discovery.locator:
+        enabled: true
+        lowerCaseServiceId: true
+      routes:
+        - id: user
+          uri: user
+          predicates:
+            - Path=/user/**
+server:
+  port: 8078
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.1.9:8762/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
