@@ -8,9 +8,13 @@ spring:
         lowerCaseServiceId: true
       routes:
         - id: user
-          uri: user
+          uri: lb://USER/
           predicates:
             - Path=/user/**
+        - id: login
+          uri: lb://USER/
+          predicates:
+            - Path=/login
 server:
   port: 8079
 

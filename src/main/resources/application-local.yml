@@ -8,11 +8,15 @@ spring:
         lowerCaseServiceId: true
       routes:
         - id: user
-          uri: user
+          uri: lb://USER/
           predicates:
             - Path=/user/**
+        - id: login
+          uri: lb://USER/
+          predicates:
+            - Path=/login
 server:
-  port: 8078
+  port: 8079
 
 eureka:
   instance:
@@ -20,7 +24,7 @@ eureka:
     leaseExpirationDurationInSeconds: 2
   client:
     serviceUrl:
-      defaultZone: http://192.168.1.9:8762/eureka/
+      defaultZone: http://localhost:8761/eureka/
     healthcheck:
       enabled: true
     lease:
