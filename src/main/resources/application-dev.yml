@@ -17,6 +17,10 @@ spring:
           uri: lb://USER/
           predicates:
             - Path=/login
+        - id: subject
+            uri: lb://SUBJECT/
+            predicates:
+              - Path=/subject
 server:
   port: 8079
 
