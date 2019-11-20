@@ -20,7 +20,7 @@ spring:
         - id: subject
           uri: lb://SUBJECT/
           predicates:
-            - Path=/subject/**
+            - Path=/subject-service/**
 server:
   port: 8079
 
