@@ -12,11 +12,7 @@ spring:
         - id: user
           uri: lb://USER/
           predicates:
-            - Path=/user/**
-        - id: login
-          uri: lb://USER/
-          predicates:
-            - Path=/login
+            - Path=/user-service/**
         - id: subject
           uri: lb://SUBJECT/
           predicates:
