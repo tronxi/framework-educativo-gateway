@@ -19,7 +19,7 @@ spring:
             - Path=/subject-service/**
 server:
   port: 8079
-
+eureka-host: http://raspberrytronxi2.ddns.net
 eureka:
   instance:
     status-page-url-path: ${spring.cloud.client.hostname}:${server.port}/actuator/health
@@ -27,7 +27,7 @@ eureka:
     leaseExpirationDurationInSeconds: 2
   client:
     serviceUrl:
-      defaultZone: http://raspberrytronxi2.ddns.net:8762/eureka/
+      defaultZone: http://${eureka-host}:8762/eureka/
     healthcheck:
       enabled: true
     lease:
