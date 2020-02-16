@@ -2,8 +2,8 @@ spring:
   application:
     name: "gateway"
   cloud:
-    client:
-      hostname: http://raspberrytronxi2.ddns.net
+#    client:
+#      hostname: http://raspberrytronxi2.ddns.net
     gateway:
       discovery.locator:
         enabled: true
@@ -22,12 +22,12 @@ server:
 eureka-host: http://raspberrytronxi2.ddns.net
 eureka:
   instance:
-    status-page-url-path: ${spring.cloud.client.hostname}:${server.port}/actuator/health
+    status-page-url-path: /actuator/health
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2
   client:
     serviceUrl:
-      defaultZone: http://${eureka-host}:8761/eureka/
+      defaultZone: ${eureka-host}:8761/eureka/
     healthcheck:
       enabled: true
     lease:
