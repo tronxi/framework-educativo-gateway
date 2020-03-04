@@ -11,6 +11,7 @@ RUN mvn package spring-boot:repackage
 FROM openjdk:8-alpine
 ENV clave clave
 ENV eureka_host http://localhost
+ENV gateway-service gateway-service
 ENV profile dev
 COPY --from="builder" /target/framework-educativo-gateway-0.0.1-SNAPSHOT.jar .
-CMD java -jar -Dspring.profiles.active=${profile} -Djasypt.encryptor.password=${clave} framework-educativo-gateway-0.0.1-SNAPSHOT.jar --eureka-host=${eureka_host}
+CMD java -jar -Dspring.profiles.active=${profile} -Djasypt.encryptor.password=${clave} framework-educativo-gateway-0.0.1-SNAPSHOT.jar --eureka-host=${eureka_host} --gateway-service=${gateway-service}

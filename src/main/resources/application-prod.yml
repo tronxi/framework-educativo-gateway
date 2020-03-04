@@ -20,11 +20,13 @@ spring:
 server:
   port: 8079
 eureka-host: http://raspberrytronxi2.ddns.net
+gateway-service: gateway-service
 eureka:
   instance:
     status-page-url-path: /actuator/health
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2
+    hostname: ${gateway-service}
   client:
     serviceUrl:
       defaultZone: ${eureka-host}:8761/eureka/
