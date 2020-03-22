@@ -23,7 +23,7 @@ pipeline {
         stage('Push') {
             steps {
                 sh '''
-                    docker login  --username tronxi --password $DOCKER_HUB_PASSWORD
+                    docker login  --username tronxi --password-stdin $DOCKER_HUB_PASSWORD
                     docker push tronxi/framework-educativo-gateway:${GATEWAY_TAG}
                 '''
             }
