@@ -7,10 +7,10 @@ pipeline {
     stages {
         stage('Deploy') {
             steps {
-                withEnv(['GCLOUD_PATH=/var/jenkins_home/google-cloud-sdk/bin']) {
-                    sh '$GCLOUD_PATH/gcloud --version'
-                }
-
+                sh '''
+                    export PATH=/root/google-cloud-sdk/bin:$PATH
+                    gcloud -version
+                '''
             }
         }
         stage('Build') {
