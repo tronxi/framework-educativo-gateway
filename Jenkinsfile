@@ -9,7 +9,8 @@ pipeline {
             steps {
                 sh '''
                     export PATH=/root/google-cloud-sdk/bin:$PATH
-                    gcloud -v
+                    gcloud container clusters get-credentials framework-educativo-cluster --zone europe-west1-b --project framework-educativo
+                    kubectl get pods
                 '''
             }
         }
