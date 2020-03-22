@@ -1,15 +1,12 @@
 pipeline {
     agent any
-    environment {
-        //Use Pipeline Utility Steps plugin to read information from pom.xml into env variables
-        pom = readMavenPom file: 'pom.xml'
-        VERSION = pom.version
-    }
 
     stages {
         stage('Build') {
             steps {
-                echo "${VERSION}"
+                sh '''
+                    docker build -t imaagen -f- https://github.com/tronxi/framework-educativo-gateway.git#develop
+                '''
             }
         }
         stage('Test') {
