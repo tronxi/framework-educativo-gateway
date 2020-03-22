@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    docker build -t imaagen -f- https://github.com/tronxi/framework-educativo-gateway.git#develop
+                    docker build -t imaagen https://github.com/tronxi/framework-educativo-gateway.git#develop
                 '''
             }
         }
