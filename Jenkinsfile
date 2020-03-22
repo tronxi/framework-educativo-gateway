@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh '''
                     export PATH=/root/google-cloud-sdk/bin:$PATH
-                    gcloud -version
+                    gcloud -v
                 '''
             }
         }
