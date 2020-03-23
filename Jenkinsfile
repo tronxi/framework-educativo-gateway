@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         GATEWAY_TAG = '0.0.5'
+        DOCKER_HUB_PASSWORD = credentials('DOCKER_HUB_PASS')
     }
     stages {
         stage('Deploy') {
