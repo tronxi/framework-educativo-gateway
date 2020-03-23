@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        GATEWAY_TAG = '0.0.4'
+        GATEWAY_TAG = '0.0.5'
         DOCKER_HUB_PASSWORD = credentials('DOCKER_HUB_PASS')
     }
     stages {
@@ -9,6 +9,7 @@ pipeline {
             steps {
                 sh '''
                     export PATH=/root/google-cloud-sdk/bin:$PATH
+                    ls
                 '''
             }
         }
