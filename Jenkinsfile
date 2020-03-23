@@ -10,6 +10,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
+                    set +x
                     export PATH=/root/google-cloud-sdk/bin:$PATH
                     gcloud auth activate-service-account 948485234647-compute@developer.gserviceaccount.com --key-file= $GCLOUD_FILE
                     ls
