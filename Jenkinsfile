@@ -13,6 +13,8 @@ pipeline {
                     gcloud container clusters get-credentials framework-educativo-cluster --zone europe-west1-b --project framework-educativo
                     kubectl get pods
                     cat deploy.yml
+                    envsubst < deploy.yml > deploy-env.yml
+                    cat deploy-env.yml
                 '''
             }
         }

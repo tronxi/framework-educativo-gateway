@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: framework-educativo-gateway
-          image: tronxi/framework-educativo-gateway
+          image: tronxi/framework-educativo-gateway:${GATEWAY_TAG}
           resources:
             limits:
               cpu: "0.4"
