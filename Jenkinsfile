@@ -11,7 +11,7 @@ pipeline {
             steps {
                 sh '''
                     export PATH=/root/google-cloud-sdk/bin:$PATH
-                    gcloud auth activate-service-account $GCLOUD_ACCOUNT --key-file= $GCLOUD_FILE
+                    gcloud auth activate-service-account 948485234647-compute@developer.gserviceaccount.com --key-file= $GCLOUD_FILE
                     ls
                 '''
             }
