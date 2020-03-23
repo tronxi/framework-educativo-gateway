@@ -9,7 +9,6 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'GCLOUD', variable: 'FILE')]) {
                     sh '''
-                    set +x
                     export PATH=/root/google-cloud-sdk/bin:$PATH
                     gcloud auth activate-service-account 948485234647-compute@developer.gserviceaccount.com --key-file= $FILE
                     ls
