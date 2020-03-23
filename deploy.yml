@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: framework-educativo-gateway
+  labels:
+    app: framework-educativo-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: framework-educativo-gateway
+  template:
+    metadata:
+      labels:
+        app: framework-educativo-gateway
+    spec:
+      containers:
+        - name: framework-educativo-gateway
+          image: tronxi/framework-educativo-gateway
+          resources:
+            limits:
+              cpu: "0.4"
+              memory: "512Mi"
+            requests:
+              cpu: "0.2"
+              memory: "400Mi"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8079
+            initialDelaySeconds: 90
+            periodSeconds: 30
+
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8079
+            initialDelaySeconds: 90
+            periodSeconds: 30
+          ports:
+            - name: gateway
+              containerPort: 8079
+          env:
+            - name: profile
+              valueFrom:
+                configMapKeyRef:
+                  name: framework-educativo-config-map
+                  key: profile
+            - name: clave
+              valueFrom:
+                secretKeyRef:
+                  name: framework-educativo-secret
+                  key: clave
+            - name: eureka_host
+              valueFrom:
+                configMapKeyRef:
+                  name: framework-educativo-config-map
+                  key: eureka_host
+            - name: gateway_service
+              valueFrom:
+                configMapKeyRef:
+                  name: framework-educativo-config-map
+                  key: gateway_service
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-service
+  labels:
+    app: framework-educativo-gateway
+spec:
+  type: NodePort
+  selector:
+    app: framework-educativo-gateway
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8079
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: framework-educativo-gateway
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: framework-educativo-gateway
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 50
