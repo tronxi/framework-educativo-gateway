@@ -90,3 +90,24 @@ spec:
   minReplicas: 1
   maxReplicas: 3
   targetCPUUtilizationPercentage: 50
+---
+apiVersion: networking.gke.io/v1beta1
+kind: ManagedCertificate
+metadata:
+  name: framework-educativo-gateway-certificate
+spec:
+  domains:
+    - framework-educativo-gateway.pw
+  ---
+  apiVersion: extensions/v1beta1
+  kind: Ingress
+  metadata:
+    name: framework-educativo-gateway-ingress
+    annotations:
+      kubernetes.io/ingress.allow-http: "false"
+      kubernetes.io/ingress.global-static-ip-name: framework-educativo-gateway-global
+      networking.gke.io/managed-certificates: framework-educativo-gateway-certificate
+  spec:
+    backend:
+      serviceName: gateway-service
+      servicePort: 80
