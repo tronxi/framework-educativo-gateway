@@ -108,14 +108,6 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: framework-educativo-gateway-global
     networking.gke.io/managed-certificates: framework-educativo-gateway-certificate
 spec:
-  rules:
-  - http:
-      paths:
-      - path: /*
-        backend:
-          serviceName: gateway-service
-          servicePort: 80
-      - path: /swagger/*
-        backend:
-          serviceName: zuul-service
-          servicePort: 8070
+  backend:
+    serviceName: gateway-service
+    servicePort: 80

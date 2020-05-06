@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        GATEWAY_TAG = '0.0.7'
+        GATEWAY_TAG = '0.0.8'
         DOCKER_HUB_PASSWORD = credentials('DOCKER_HUB_PASSWORD')
     }
     stages {
