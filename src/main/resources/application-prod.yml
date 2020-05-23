@@ -18,9 +18,9 @@ spring:
           predicates:
             - Path=/subject-service/**
         - id: activity
-            uri: lb://ACTIVITY/
-            predicates:
-              - Path=/activity-service/**
+          uri: lb://ACTIVITY/
+          predicates:
+            - Path=/activity-service/**
 server:
   port: 8079
 eureka-host: http://raspberrytronxi2.ddns.net
